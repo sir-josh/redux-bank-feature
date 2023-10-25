@@ -15,7 +15,6 @@ function reducer(state = initialState, action) {
 			return { ...state, balance: state.balance - action.payload };
 		case "account/requestLoan":
 			if (state.loan > 0) return state;
-			//LATER
 			return {
 				...state,
 				loan: state.loan + action.payload.amount,
@@ -37,11 +36,44 @@ function reducer(state = initialState, action) {
 
 const store = createStore(reducer);
 
-store.dispatch({ type: "account/deposit", payload: 500 });
+// store.dispatch({ type: "account/deposit", payload: 500 });
 
-console.log("store dispatched", store.getState());
-store.dispatch({
-	type: "account/requestLoan",
-	payload: { amount: 500, purpose: "Start side business" },
-});
-console.log(store.getState());
+// console.log("store dispatched", store.getState());
+// store.dispatch({
+// 	type: "account/requestLoan",
+// 	payload: { amount: 500, purpose: "Start side business" },
+// });
+// console.log(store.getState());
+
+//Action Creators
+function deposit(amount) {
+	return { type: "account/deposit", payload: amount };
+}
+
+function withdraw(amount) {
+	return { type: "account/withdraw", payload: amount };
+}
+
+function requestLoan(amount, purpose) {
+	return {
+		type: "account/requestLoan",
+		payload: { amount, purpose },
+	};
+}
+
+function payLoan() {
+	return { type: "account/payLoan" };
+}
+
+store.dispatch(deposit(500));
+console.log("deposit action:", store.getState());
+
+store.dispatch(withdraw(150));
+console.log("withdraw action:", store.getState());
+
+
+store.dispatch(requestLoan(1500, "Pay for rental"));
+console.log("loan request action:", store.getState());
+
+store.dispatch(payLoan());
+console.log("pay loan action:", store.getState());
