@@ -64,6 +64,7 @@ export function deposit(amount, currency) {
 }
 
 export default accountSlice.reducer;
+
 // export default function accountReducer(state = initialState, action) {
 // 	switch (action.type) {
 // 		case "account/deposit":
