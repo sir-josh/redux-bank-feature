@@ -11,13 +11,10 @@ function AccountOperations() {
 
 	const dispatch = useDispatch();
 	const {
-		balance,
 		loan: currentLoan,
 		loanPurpose: currentLoanPurpose,
 		isLoading,
 	} = useSelector((store) => store.account);
-
-	console.log(balance);
 
 	function handleDeposit() {
 		if (!depositAmount) return;
